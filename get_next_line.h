@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jsilva-s <jsilva-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:26:32 by jsilva-s          #+#    #+#             */
-/*   Updated: 2023/06/29 19:58:08 by jessica          ###   ########.fr       */
+/*   Updated: 2023/06/30 14:12:19 by jsilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+void	*ft_memcpy(void *dest, const void *src, size_t len);
+char	*ft_strjoin(char const *str1, char const *str2);
+char	*ft_strchr(const char *str, int character);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_substr_gnl(char const *s, unsigned int start, size_t len);
 char	*get_next_line(int fd);
