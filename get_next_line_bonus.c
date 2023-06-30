@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:40:58 by jsilva-s          #+#    #+#             */
-/*   Updated: 2023/06/30 09:35:53 by jessica          ###   ########.fr       */
+/*   Updated: 2023/06/29 19:20:01 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*ft_buff_line(char *storage)
 	if (storage[i] == '\n')
 		i++;
 	line = ft_substr_gnl(storage, 0, i);
-	if (!*line)
+	if (line == NULL)
 	{
 		free(line);
 		return (NULL);
@@ -110,16 +110,16 @@ char	*ft_read_buff(int fd, char *storage)
 
 char	*get_next_line(int fd)
 {
-	static char	*storage;
+	static char	*storage[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	storage = ft_read_buff(fd, storage);
-	if (!storage)
+	storage[fd] = ft_read_buff(fd, storage[fd]);
+	if (!storage[fd])
 		return (NULL);
-	line = ft_buff_line(storage);
-	storage = ft_remove_line(storage, line);
+	line = ft_buff_line(storage[fd]);
+	storage[fd] = ft_remove_line(storage[fd], line);
 	return (line);
 }
 
@@ -128,15 +128,9 @@ char	*get_next_line(int fd)
     int fd;
     char path[] = "./read_error.txt";
     fd = open(path, O_RDONLY); // Open file for reading only.
-	 printf("%s\n", get_next_line(fd));
+	printf("%s\n", get_next_line(fd));
     printf("%s\n", get_next_line(fd));
     printf("%s\n", get_next_line(fd));
     printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd)); 
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
     close(fd);
 } */

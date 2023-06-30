@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jsilva-s <jsilva-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:26:22 by jsilva-s          #+#    #+#             */
-/*   Updated: 2023/06/29 21:02:55 by jessica          ###   ########.fr       */
+/*   Updated: 2023/06/28 13:28:06 by jsilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,23 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
 {
 	char	*subst;
+	size_t	size;
 
 	if (!s)
 		return (NULL);
+	if (start >= ft_strlen(s))
+	{
+		subst = (char *)malloc(1 * sizeof(char));
+		subst[0] = '\0';
+		return (subst);
+	}
+	size = ft_strlen(s + start);
+	if (size < len)
+		len = size;
 	subst = (char *)malloc(sizeof(char) * (len + 1));
 	if (!subst)
 		return (NULL);
-	if (start >= ft_strlen(s))
-		subst[0] = '\0';
-	else
-		ft_strlcpy(subst, s + start, len + 1);
+	ft_strlcpy(subst, s + start, len + 1);
 	return (subst);
 }
 
