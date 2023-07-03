@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsilva-s <jsilva-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:40:58 by jsilva-s          #+#    #+#             */
-/*   Updated: 2023/07/03 14:19:26 by jsilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/03 23:38:57 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ static char	*ft_read_fd(int fd, char *storage)
 		read_rtrn = read(fd, buffer, BUFFER_SIZE);
 		if (read_rtrn == -1)
 		{
+			if(*storage)
+				free(storage);
 			free(buffer);
 			return (NULL);
 		}
@@ -123,10 +125,21 @@ char	*get_next_line(int fd)
     int fd;
     char path[] = "./read_error.txt";
     fd = open(path, O_RDONLY); // Open file for reading only.
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd));
-    printf("%s\n", get_next_line(fd)); 
-    close(fd);
+    char *s = get_next_line(fd);
+    char *s1 = get_next_line(fd);
+    char *s2 = get_next_line(fd);
+    char *s3 = get_next_line(fd);
+    //char *s4 = get_next_line(fd);
+    printf("%s\n", s);
+    printf("%s\n", s1);
+    printf("%s\n", s2);
+    printf("%s\n", s3);
+    //printf("%s\n", s4);
+    free(s);
+    free(s1);
+    free(s2);
+    free(s3);
+    //free(s4);
+
+	close(fd);
 } */

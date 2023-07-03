@@ -90,15 +90,26 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
+/* int main()
 {
-	int fd;
-	char path[] = "./example.txt";
-	fd = open(path, O_RDONLY); // Open file for reading only.
-	printf("%s\n", get_next_line(fd));
-	/* printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd));
-	printf("%s\n", get_next_line(fd)); */
+    int fd;
+    char path[] = "./read_error.txt";
+    fd = open(path, O_RDONLY); // Open file for reading only.
+    char *s = get_next_line(fd);
+    char *s1 = get_next_line(fd);
+    char *s2 = get_next_line(fd);
+    char *s3 = get_next_line(fd);
+    //char *s4 = get_next_line(fd);
+    printf("%s\n", s);
+    printf("%s\n", s1);
+    printf("%s\n", s2);
+    printf("%s\n", s3);
+    //printf("%s\n", s4);
+    free(s);
+    free(s1);
+    free(s2);
+    free(s3);
+    //free(s4);
+
 	close(fd);
-}
+} */

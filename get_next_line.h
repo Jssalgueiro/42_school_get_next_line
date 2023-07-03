@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsilva-s <jsilva-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jessica <jessica@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:26:32 by jsilva-s          #+#    #+#             */
-/*   Updated: 2023/07/03 14:07:26 by jsilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/03 20:11:36 by jessica          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
 char	*ft_strcpy(char *dest, const char *s);
 char	*ft_strjoin_gnl(char *storage, char *buffer);
+char	*ft_strchr(const char *str, int character);
 
 #endif
