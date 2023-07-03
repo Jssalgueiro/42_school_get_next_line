@@ -93,7 +93,7 @@ char	*get_next_line(int fd)
 int	main(void)
 {
 	int fd;
-	char path[] = "./read_error.txt";
+	char path[] = "./example.txt";
 	fd = open(path, O_RDONLY); // Open file for reading only.
 	printf("%s\n", get_next_line(fd));
 	/* printf("%s\n", get_next_line(fd));
