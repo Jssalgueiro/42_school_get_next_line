@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jsilva-s <jsilva-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 10:40:58 by jsilva-s          #+#    #+#             */
-/*   Updated: 2023/07/05 15:16:32 by jsilva-s         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:17:57 by jsilva-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Read line: correct behavior
 NULL: there is nothing else to read, or an error occurred
 */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_remove_line(char *storage, char *line)
 {
@@ -107,39 +107,45 @@ static char	*ft_read_fd(int fd, char *storage)
 
 char	*get_next_line(int fd)
 {
-	static char	*storage;
+	static char	*storage[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	storage = ft_read_fd(fd, storage);
-	if (!storage)
+	storage[fd] = ft_read_fd(fd, storage[fd]);
+	if (!storage[fd])
 		return (NULL);
-	line = ft_buff_line(storage);
-	storage = ft_remove_line(storage, line);
+	line = ft_buff_line(storage[fd]);
+	storage[fd] = ft_remove_line(storage[fd], line);
+	if (!line)
+		return (NULL);
 	return (line);
 }
 
 /* int	main(void)
 {
-	int fd;
+	int	i = 0;
+	int fd[5];
 	char path[] = "./1char.txt";
-	fd = open(path, O_RDONLY); // Open file for reading only.
-	char *s = get_next_line(fd);
-	char *s1 = get_next_line(fd);
-	char *s2 = get_next_line(fd);
-	char *s3 = get_next_line(fd);
-	char *s4 = get_next_line(fd);
-	printf("%s\n", s);
-	printf("%s\n", s1);
-	printf("%s\n", s2);
-	printf("%s\n", s3);
-	printf("%s\n", s4);
-	free(s);
-	free(s1);
-	free(s2);
-	free(s3);
-	free(s4);
-
-	close(fd);
+	
+	while (i < 5)
+	{
+		fd[i] = open(path, O_RDONLY); // Open file for reading only.
+		i++;
+	}
+	i = 0;
+	while (i < 5)
+	{
+		printf("%s\n", get_next_line(fd[0]));
+		printf("%s\n", get_next_line(fd[1]));
+		printf("%s\n", get_next_line(fd[2]));
+		printf("%s\n", get_next_line(fd[3]));
+		printf("%s\n", get_next_line(fd[4]));
+		i++;
+	}
+	while (i >= 0)
+	{
+		close(fd[i]);
+		i--;
+	}
 } */
